@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { ListView, View, Text } from 'react-native';
 import { employeesFetch } from "../actions";
@@ -39,5 +40,15 @@ class EmployeeList extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    console.log(state.employees);
+
+    const employees = _.map(state.employees, (val, uid) => {
+        return { ...val, uid };
+    });
+
+    return { employees };
+};
 
 export default connect(null, { employeesFetch })(EmployeeList);
