@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { employeeUpdate } from '../actions'
 import { Card, CardSection, Input, Button } from './common';
 
 class EmployeeCreate extends React.Component {
@@ -20,11 +22,19 @@ class EmployeeCreate extends React.Component {
                 </CardSection>
 
                 <CardSection>
-
+                    <Button>
+                        Create
+                    </Button>
                 </CardSection>
             </Card>
         );
     }
 };
 
-export default EmployeeCreate;
+const mapStateToProps = (state, ownProps) => {
+    const { name, phone, shift } = state.employeeForm;
+
+    return { name, phone, shift };
+}
+
+export default connect(null, { employeeUpdate })(EmployeeCreate);
