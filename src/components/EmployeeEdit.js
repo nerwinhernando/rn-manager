@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Card, CardSection, Button, Confirm } from './common';
 import EmployeeForm from './EmployeeForm';
 import Communications from 'react-native-communications';
-import { employeeUpdate, employeeSave } from '../actions';
+import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
 
 class EmployeeEdit extends React.Component {
     state = { showModal: false }
@@ -28,7 +28,9 @@ class EmployeeEdit extends React.Component {
     }
 
     onAccept() {
-        
+        const { uid } = this.props.employee;
+
+        this.props.employeeDelete( { uid });
     }
 
     onDecline() {
@@ -74,4 +76,4 @@ const mapStateToProps = (state, ownProps) => {
     return { name, phone, shift };
 }
 
-export default connect(mapStateToProps, { employeeUpdate, employeeSave })(EmployeeEdit);
+export default connect(mapStateToProps, { employeeUpdate, employeeSave, employeeDelete })(EmployeeEdit);
