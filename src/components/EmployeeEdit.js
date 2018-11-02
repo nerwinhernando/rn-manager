@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Button } from './common';
 import EmployeeForm from './EmployeeForm';
+import Communications from 'react-native-communications';
 import { employeeUpdate, employeeSave } from '../actions';
 class EmployeeEdit extends React.Component {
     componentWillMount() {
@@ -18,6 +19,10 @@ class EmployeeEdit extends React.Component {
         this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid })
     }
 
+    onTextPress() {
+
+    }
+
     render() {
         return(
             <Card>
@@ -25,6 +30,12 @@ class EmployeeEdit extends React.Component {
                 <CardSection>
                     <Button onPress={this.onButtonPress.bind(this)}>
                         Save Changes
+                    </Button>
+                </CardSection>
+
+                <CardSection>
+                    <Button onPress={this.onTextPress.bind(this)}>
+                        Text Schedule
                     </Button>
                 </CardSection>
             </Card>
